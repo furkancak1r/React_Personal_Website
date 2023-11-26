@@ -1,5 +1,3 @@
-
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -36,7 +34,7 @@ body {
 	filter: drop-shadow(0 0 5rem #292d44);
 }
 
-#repulse-div > h1 {
+#repulse-div>h1 {
 	-webkit-filter: drop-shadow(0 0 5rem #292d44);
 	filter: drop-shadow(0 0 5rem #292d44);
 }
@@ -81,17 +79,20 @@ polyline {
 }
 
 @keyframes morph {
+
 	0%,
 	100% {
 		border-radius: 40% 60% 70% 30% / 40% 40% 60% 50%;
 		-webkit-border-radius: 40% 60% 70% 30% / 40% 40% 60% 50%;
 		-moz-border-radius: 40% 60% 70% 30% / 40% 40% 60% 50%;
 	}
+
 	34% {
 		border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%;
 		-webkit-border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%;
 		-moz-border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%;
 	}
+
 	67% {
 		border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%;
 		-webkit-border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%;
@@ -113,21 +114,27 @@ polyline {
 	0% {
 		transform: scaleX(1);
 	}
+
 	40% {
 		transform: scaleX(1.12) scaleY(0.75);
 	}
+
 	55% {
 		transform: scaleX(0.85) scaleY(1);
 	}
+
 	65% {
 		transform: scaleX(1.09) scaleY(0.85);
 	}
+
 	75% {
 		transform: scaleX(0.9) scaleY(1);
 	}
+
 	90% {
 		transform: scaleX(1.05) scaleY(0.95);
 	}
+
 	100% {
 		transform: scaleX(1) scaleY(1);
 	}
@@ -151,6 +158,7 @@ polyline {
 	position: relative;
 	animation: rotation 1s linear infinite;
 }
+
 .loader::after {
 	content: "";
 	position: absolute;
@@ -168,7 +176,20 @@ polyline {
 	0% {
 		transform: rotate(0deg);
 	}
+
 	100% {
 		transform: rotate(360deg);
 	}
+}
+
+::-webkit-scrollbar {
+	width: 6px;
+}
+
+::-webkit-scrollbar-track {
+	background: black;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: #E65115;
 }

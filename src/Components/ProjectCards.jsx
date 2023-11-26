@@ -6,7 +6,6 @@ import Stack from '@mui/material/Stack';
 import { githubIcon } from '../assets';
 import projects from '../Constants/constants';
 import { fadeIn } from '../styles';
-
 const projectsPerPage = 8;
 
 const Works = () => {
@@ -35,8 +34,8 @@ const Works = () => {
                 scale: 1,
                 speed: 450,
               }}
-            >
-              <div className="relative ">
+              style={{ height: "100%" }}            >
+              <div className="relative">
                 <img
                   src={project.image}
                   alt={project.name}
@@ -52,14 +51,15 @@ const Works = () => {
                 </div>
               </div>
 
-              <div className="mt-3">
-                <h5 style={{ wordBreak: 'break-all' }} className="text-white font-bold text-2xl">
-                  {project.name}
-                </h5>
-                <p className="mt-2 text-secondary text-[14px] leading-snug">{project.description}</p>
+              <div style={{ height: "240px" }} className="mt-3">
+                <h6 title={project.name} style={{ wordBreak: 'break-all', overflow: "auto" }} className="text-white font-bold text-2xl">
+                  {project.name.length > 17 ? `${project.name.slice(0, 17)}...` : project.name}
+                </h6>
+                <div style={{ wordBreak: 'break-all', height: "160px", overflow: "auto" }} className="mt-2 text-secondary text-[14px] leading-snug">
+                  <p>{project.description}</p>
+                </div>
               </div>
-              <div className="mt-2 flex flex-wrap gap-1"></div>
-              <div className="mt-3 flex justify-center items-center">
+              <div style={{ bottom: "0px" }} className="button-github">
                 <a
                   className="shadow-md shadow-primary p-2 bg-tertiary rounded-lg flex justify-center"
                   href={project.demo_link}
