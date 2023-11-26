@@ -1,0 +1,7 @@
+.input-form:hover {
+    background-color: transparent;
+    border: 1px solid #fff;
+}
+.inputDisabledClass{
+    background-color: grey;
+}
