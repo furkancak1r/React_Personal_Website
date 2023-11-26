@@ -32,7 +32,10 @@ import {
 library.add(faX, faBars, faWindowRestore, faBagShopping, faDiceD6);
 import axios from 'axios';
 import { GITHUB_ACCESS_TOKEN } from "./github_access_token";
-
+function parseRepositoryName(name) {
+	// Replace underscores with spaces and capitalize each word
+	return name.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+}
 async function getUserRepositories(username) {
 	try {
 		const response = await axios.get(`https://api.github.com/users/${username}/repos?per_page=100`, {
@@ -45,8 +48,10 @@ async function getUserRepositories(username) {
 		const projects = [];
 
 		const imagePromises = repositories.map(async (repository) => {
+			const repositoryName = repository.name;
+			const parsedName = parseRepositoryName(repositoryName);
 			const repoDetails = {
-				name: repository.name,
+				name: parsedName,
 				description: repository.description,
 				source_code_link: repository.html_url,
 				demo_link: repository.html_url || '',
@@ -62,19 +67,19 @@ async function getUserRepositories(username) {
 				if (imagesResponse.data.length > 0) {
 					const firstImage = imagesResponse.data[0];
 					repoDetails.image = firstImage.download_url;
-					projects.unshift(repoDetails); 
+					projects.unshift(repoDetails);
 				} else {
 					repoDetails.image = repository.owner.avatar_url;
-					projects.push(repoDetails); 
+					projects.push(repoDetails);
 				}
 			} catch (error) {
 				if (error.response && error.response.status === 404) {
 					repoDetails.image = repository.owner.avatar_url;
 					console.clear();
-					projects.push(repoDetails); 
+					projects.push(repoDetails);
 				} else {
 					repoDetails.image = repository.owner.avatar_url;
-					projects.push(repoDetails); 
+					projects.push(repoDetails);
 				}
 			}
 		});
