@@ -2,16 +2,25 @@ import emailjs from "@emailjs/browser";
 import { useRef, useState } from "react";
 import { Typewriter } from "react-simple-typewriter";
 import "./ContactForm.css";
-import { USER_ID,TEMPLATE_ID,SERVICE_ID } from "../../emailConfig";
+import { USER_ID, TEMPLATE_ID, SERVICE_ID } from "../../emailConfig";
 import { toast } from 'react-toastify';
 
 const ContactForm = () => {
 	const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 	const form = useRef();
+	const isValidEmail = (email) => {
+		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+		return emailRegex.test(email);
+	};
 
 	const sendEmail = (e) => {
 		e.preventDefault();
 		setIsButtonDisabled(true);
+		if (!isValidEmail(e.target.from_email.value)) {
+			toast.error("Please enter a valid email address.");
+			setIsButtonDisabled(false);
+			return;
+		}
 		emailjs
 			.sendForm(SERVICE_ID, TEMPLATE_ID, e.target, USER_ID)
 			.then(
@@ -87,7 +96,7 @@ const ContactForm = () => {
 							placeholder="Enter your E-mail"
 							autoComplete="email"
 							id="email"
-							type="email"
+							type="text"
 							name="from_email"
 							required
 						/>
